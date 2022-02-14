@@ -48,7 +48,7 @@
 
 　しかし、そのように整理して考えたい場合に、そのときの候補が非常に多くの特性を有していると考えるのが難しくなります。そして、それらの値自体がどのような意味を持つのか直感的にわかりにくく、どの特性を重視して考えてよいかさえ明確でない場合も多くあると思います。（その例として、フルーツの栄養素（ビタミンB、ビタミンCなど）をもとに、それぞれのフルーツをグループ分けする例をこの先で扱います。）
 
-　4つ以上の多くの要素をもつ対象を2次元の図のようにわかりやすく可視化して、対象をグループ分けしたり、それぞれの対象の近さ（例：ゆずとみかんは似ていそう）を概観する方法があると便利そうです。そのための手法として、この記事では**主成分分析（Principal Component Anlysis: PCA）**について述べます。主成分分析とPCAは同義ですが、本稿では、主成分分析という用語を用いることとします。
+　4つ以上の多くの要素をもつ対象を2次元の図のようにわかりやすく可視化して、対象をグループ分けしたり、それぞれの対象の近さ（例：ゆずとみかんは似ていそう）を概観する方法があると便利そうです。そのための手法として、この記事では**主成分分析**（Principal Component Anlysis: PCA）について述べます。主成分分析とPCAは同義ですが、本稿では、主成分分析という用語を用いることとします。
 
 # 2章：主成分分析についてざっくりと
 ## 2-1 ここで考えるデータについて
@@ -115,7 +115,7 @@
 
 <img src="https://latex.codecogs.com/gif.latex?y_1&space;=h_1&space;x_1&space;+h_2&space;x_2&space;+h_3&space;x_3&space;+\ldotp&space;\ldotp&space;\ldotp&space;{+h}_{12}&space;x_{12}"/> 
 
-（品種改良したバナナを新たに加えたい場合、そのサンプルを加えたうえでPCAをやり直すほうがよいのかもしれませんが、今回はあくまで計算の手順の例として示しています。）
+（品種改良したバナナを新たに加えたい場合、そのサンプルを加えたうえで主成分分析をやり直すほうがよいのかもしれませんが、今回はあくまで計算の手順の例として示しています。）
 
 ## 2-5 第三成分以降について
 
@@ -413,7 +413,15 @@ https://manabitimes.jp/math/1046
 
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;a^T&space;Var\left(\bar{X}&space;\right)a"/>は2次形式で表されていて、その性質を用いています。
 
-![image_17.png](README_images/image_17.png)
+  
+
+**2次形式について**
+
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;3x^2&space;+4xy+5y^2"/>のように、次数が2の多項式で表される式の形
+
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;w^T&space;Aw"/> という形で表すことができて、各種演算も簡単に実行できる。
+
+例）<img src="https://latex.codecogs.com/gif.latex?\inline&space;w^T&space;Aw"/>を微分した値は 2Aw 　　
 
   
 
@@ -477,7 +485,7 @@ figure;scatter3(X,Y,Z) % プロット
 
 すると、等しい間隔で点の並んだ、3次元のプロットを得ることができました。非常にこの平面に自分が立っていると想像してください。すると、その真上（真下）方向は変動せず、前と横方向しか変動していないですね。そのため、以下の図のように、2つの軸を取ればうまく2次元にデータを縮約できるのではないかと考えられます。
 
-![image_18.png](README_images/image_18.png)
+![image_17.png](README_images/image_17.png)
 
 ノイズを加えて、ぼんやり平面が見えるくらいのデータに加工します。
 
@@ -548,13 +556,13 @@ X_var = 3x3
 
 しかし、今回は3次元のデータを扱っているので、その結果として、以下のような共分散行列を得ることができます。
 
-![image_19.png](README_images/image_19.png)
+![image_18.png](README_images/image_18.png)
 
 対角成分は、x, y, zの分散で、それ以外は、各変数の共分散になっています。
 
 共分散はざっくりいうとその変数同士が似ているかどうかで、その共分散から相関係数を出すことができます。
 
-![image_20.png](README_images/image_20.png)
+![image_19.png](README_images/image_19.png)
 
 ここで、Xからその平均を引いた<img src="https://latex.codecogs.com/gif.latex?\inline&space;\bar{X}"/>の分散（共分散行列）が求まれば、あとは以下の固有値問題を解けばいいのでした。
 
@@ -634,7 +642,7 @@ coeff2 = 3x3
 
 ```
 
-さきほどの筆者の理解をもとに、自身でPCAを求めたときの固有ベクトル
+さきほどの筆者の理解をもとに、自身で主成分分析を実装し、求めたときの固有ベクトル
 
 ```matlab:Code
 V
@@ -694,7 +702,7 @@ ans = 10x3
 
 また、ノイズを乗せているため、完全ではないですが、XY平面からみると以下のように、主成分分析により、座標を変換したものは平面的になっていることがわかります。
 
-![image_21.png](README_images/image_21.png)
+![image_20.png](README_images/image_20.png)
 
 ## 6.6. 無相関化
 
@@ -718,7 +726,7 @@ ans = 3x3
 
 再び、共分散行列について示します。
 
-![image_22.png](README_images/image_22.png)
+![image_21.png](README_images/image_21.png)
 
 このように、変数間の相関（のようなもの）は0になることがわかります。例えば、xとyの値をプロットしてみます。
 
@@ -754,13 +762,13 @@ disp(['決定係数は',string(mdl.Rsquared.Ordinary),'である'])
 
 1章の例では、多次元の栄養データを2次元にプロットして可視化していました。4章の例を参考にすると、いろいろなデータで主成分分析を行うことができそうです。しかし、2次元にプロットすることは便利ですが、幾分か情報が失われているはずです。2次元では説明しきれない情報も多く存在しているはずで、その2次元のプロットによる可視化を中心に議論することの可否が気になるかと思います。その各主成分のもつ情報の割合を累積寄与率によって判断することができます。以下のように、各主成分の寄与率は、各主成分の分散を総分散で割ったものです。また、総分散とは各固有値の総和です（詳しくは後述する）。
 
-![image_23.png](README_images/image_23.png)
+![image_22.png](README_images/image_22.png)
 
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda_i&space;="/>i番目の固有値、総分散＝（各固有値の総和）
 
 また、累積寄与率は、その成分までの和です。例えば、5次元のデータに対して、2つ目の成分までの寄与率は、1および2つ目の寄与率の和を全寄与率で割ったときの値です。しかし、固有値と分散が等しいとされており、わかりにくいです。これについて次の項で説明します。
 
-![image_24.png](README_images/image_24.png)
+![image_23.png](README_images/image_23.png)
 
 累積寄与率は、以下のコマンドで求められて、さきほどの3次元プロットの例では、3次元までしかないため、3次元まで寄与率を足すと100になっていて、第一主成分のみでは73.5、第二主成分まででは、99となっています。この値が80を超えると、そのデータをうまく説明できている、という目安です。
 
@@ -819,7 +827,7 @@ ans = 3x1
 
   
 
-![image_25.png](README_images/image_25.png)
+![image_24.png](README_images/image_24.png)
 
 画像出典：株式会社インテージさま：主成分分析とは
 
@@ -890,7 +898,7 @@ ans = 3x1
 
 以下のスライドは、統計科学研究所さまのスライドより引用しています。
 
-![image_26.png](README_images/image_26.png)
+![image_25.png](README_images/image_25.png)
 
 引用：https://statistics.co.jp/reference/software_R/statR_9_principal.pdf
 
