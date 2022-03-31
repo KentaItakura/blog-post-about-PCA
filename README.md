@@ -1,3 +1,5 @@
+### このページは[こちらのブログ記事](https://kentapt.hatenablog.com/entry/2022/02/16/182532)のために作成されたものです。よろしければぜひブログ記事のほうをご覧ください。
+
 # 主成分分析 (Principal Component Analysis: PCA)を簡単に、かつわかりやすく説明したい
   
 # 0章：はじめに
